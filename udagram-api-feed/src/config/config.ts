@@ -10,5 +10,6 @@ export const config = {
 			"version": 'v4',
 			"jwt": {
 				"secret": process.env.JWT_SECRET
-			}
+			},
+			"url": 'http://localhost:8100'
 }
