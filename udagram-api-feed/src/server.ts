@@ -9,6 +9,7 @@ import {config} from './config/config';
 import {V0_FEED_MODELS} from './controllers/v0/model.index';
 
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (async () => {
   await sequelize.addModels(V0_FEED_MODELS);
   await sequelize.sync();
