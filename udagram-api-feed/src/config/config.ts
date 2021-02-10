@@ -13,6 +13,8 @@
 // 			},
 // 			"url": 'http://localhost:8100'
 // }
+
+// I WANT TO BE ABLE TO PASS THE VARIABLES THAT ARE SET IN THE FILE set_env.sh
 export const config = {
 			"username": process.env.POSTGRESS_USERNAME,
 			"password": process.env.POSTGRESS_PASSWORD,
