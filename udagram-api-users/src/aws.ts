@@ -5,7 +5,7 @@ import {config} from './config/config';
 // if it is already deployed, the machine is running inside of your instance. So, you do not need to get the credentials!
 if(config.aws_profile !== "DEPLOYED") {
   //Configure AWS - it get your credentials setup in your home folder .aws
-  var credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
+  const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
   // we get the credentials above and saved these
   // within the AWS config credentials parameter of that service.
   // the credentials are: aws_access_key_id annd
