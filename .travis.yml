@@ -12,9 +12,9 @@ install:
 before_script:
 
 script:
-  - echo "$AWS_BUCKET"
-  - pwd
   - cd udagram-api-feed
+  - pwd
+  - printenv
   - docker build -t udagram-api-feed .
   - docker run udagram-api-feed
   # - docker --version # print the version for logging
