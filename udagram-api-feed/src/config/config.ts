@@ -1,8 +1,8 @@
 export const config = {
-			"username": process.env.POSTGRESS_USERNAME,
-			"password": process.env.POSTGRESS_PASSWORD,
-			"database": process.env.POSTGRESS_DATABASE,
-			"host": process.env.POSTGRESS_HOST,
+			"username": process.env.POSTGRES_USERNAME,
+			"password": process.env.POSTGRES_PASSWORD,
+			"database": process.env.POSTGRES_DATABASE,
+			"host": process.env.POSTGRES_HOST,
 			"dialect": "postgres",
 			"aws_region": process.env.AWS_REGION,
 			"aws_profile": process.env.AWS_PROFILE,
@@ -11,5 +11,5 @@ export const config = {
 			"jwt": {
 				"secret": process.env.JWT_SECRET
 			},
-			"url": 'http://localhost:8100'
+			"url": process.env.URL
 }
