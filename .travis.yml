@@ -10,10 +10,9 @@ install:
 
 # Scripts to be run such as tests
 before_script:
-  - echo "no tests"
-  - echo "AWS_BUCKET"
 
 script:
+  - echo "$AWS_BUCKET"
   # - docker --version # print the version for logging
   # - docker build -t simple-node .
   # - docker tag simple-node YOUR_DOCKER_HUB/simple-node:latest
