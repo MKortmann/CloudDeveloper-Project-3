@@ -1,6 +1,5 @@
-# Use Beevelop with NodeJS and ionic as base image
+# Use NodeJS base image
 FROM beevelop/ionic:latest
-
 # Create app directory in Docker
 WORKDIR /usr/src/app
 
@@ -18,4 +17,4 @@ COPY . .
 EXPOSE 8080
 
 # Define Docker’s behavior when the image is run
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
