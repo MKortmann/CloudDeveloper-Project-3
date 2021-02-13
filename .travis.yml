@@ -20,7 +20,7 @@ script:
   - docker build -t udagram-api-users .
   - docker tag mkortmann/udagram-api-users:latest
 
-  - cd ../udagram-api-frontend
+  - cd ../udagram-frontend
   - docker build -t udagram-api-users .
   - docker tag mkortmann/udagram-api-users:latest
 
