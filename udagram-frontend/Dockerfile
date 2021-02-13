@@ -1,5 +1,5 @@
 # Use NodeJS base image
-FROM beevelop/ionic:latest
+FROM beevelop/ionic AS ionic
 # Create app directory in Docker
 WORKDIR /usr/src/app
 
