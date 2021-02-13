@@ -1,4 +1,6 @@
 language: node_js
+# language: minimal - minimal is image available in Ubuntu Focal dist: focal... It is not tailored to any particular promgramming language. It is optimized to be faster and use less disk space.
+
 node_js:
   - 13
 
