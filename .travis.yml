@@ -13,7 +13,7 @@ before_script:
 
 script:
   - cd udagram-api-feed
-  - docker build -t udagram-api-feed
+  - docker build -t udagram-api-feed .
   - docker tag mkortmann/udagram-api-feed:latest
 
   - cd ../udagram-api-users
