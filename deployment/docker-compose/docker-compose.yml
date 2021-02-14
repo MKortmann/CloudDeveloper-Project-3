@@ -39,7 +39,7 @@ services:
     ports:
       - "8100:80"
   # reversy proxy: proxies requests to internal services
-  udagram-reversyproxy:
+  udagram-reverseproxy:
     image: mkortmann/udagram-reversyproxy
     ports:
       - 8080:8080

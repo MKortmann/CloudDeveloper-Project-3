@@ -16,8 +16,8 @@ services:
       context: ../../udagram-frontend
       dockerfile: Dockerfile
     image: mkortmann/udagram-frontend
-  udagram-reversyproxy:
+  udagram-reverseproxy:
     build:
-      context: ../../udagram-reversyproxy
+      context: ../../udagram-reverseproxy
       dockerfile: Dockerfile
-    image: mkortmann/udagram-reversyproxy
+    image: mkortmann/udagram-reverseproxy
