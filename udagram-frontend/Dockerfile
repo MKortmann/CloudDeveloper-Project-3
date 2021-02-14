@@ -20,4 +20,7 @@ FROM nginx:alpine
 
 #COPY  SOURCE: www DESTINATION: /usr/share/nginx/html
 #USING flag from to set the source location to a previous build stage FROM ... AS <name>. That is used instead of a build context sent by the user.
+# so here we copy the "artifacts" that are build in the folder
+# /usr/src/app/www from the previous image ionic to the
+# usr/share/nginx/html
 COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html

@@ -1,0 +1,23 @@
+# here we use docker compose to build all the images together
+version: '3.9'
+services:
+  udagram-feed:
+    build:
+      context: ../../udagram-api-feed
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-api-feed
+  udagram-users:
+    build:
+      context: ../../udagam-api-users
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-api-users
+  udagram-frontend:
+    build:
+      context: ../../udagram-frontend
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-frontend
+  udagram-reversyproxy:
+    build:
+      context: ../../udagram-reversyproxy
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-reversyproxy

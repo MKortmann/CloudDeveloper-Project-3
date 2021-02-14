@@ -5,8 +5,9 @@ version: '3.9'
 services:
   # udagram api for feed
   udagram-api-feed:
-
     image: mkortmann/udagram-api-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
     environment:
       POSTGRES_USERNAME=$POSTGRES_USERNAME
       POSTGRES_PASSWORD=$POSTGRES_PASSWORD
@@ -20,6 +21,8 @@ services:
   # udagram api for users
   udagram-api-users:
     image: mkortmann/udagram-api-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
     environment:
       POSTGRES_USERNAME=$POSTGRES_USERNAME
       POSTGRES_PASSWORD=$POSTGRES_PASSWORD
@@ -33,16 +36,17 @@ services:
   # udagram-ionic frontend
   udagram-frontend:
     image: mkortmann/udagram-frontend
+    ports:
+      - "8100:80"
   # reversy proxy: proxies requests to internal services
   udagram-reversyproxy:
-    image: nginx:alpine
-    container_name: mkortmann/reversyproxy
+    image: mkortmann/udagram-reversyproxy
+    ports:
+      - 8080:8080
     depends_on:
       - udagram-feed
       - udagram-users
-    volumes:
-      - /reversyproxy/nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - 8080:8080
+
+
 
 
