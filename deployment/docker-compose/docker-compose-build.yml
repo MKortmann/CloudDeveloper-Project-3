@@ -8,7 +8,7 @@ services:
     image: mkortmann/udagram-api-feed
   udagram-users:
     build:
-      context: ../../udagam-api-users
+      context: ../../udagram-api-users
       dockerfile: Dockerfile
     image: mkortmann/udagram-api-users
   udagram-frontend:
