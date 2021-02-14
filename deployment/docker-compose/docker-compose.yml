@@ -1,6 +1,6 @@
 
 # config data for the compose
-version: '3.9'
+version: '3.3'
 
 services:
   # udagram api for feed
