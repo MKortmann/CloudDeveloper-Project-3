@@ -18,21 +18,15 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: mkortmann/udagram-frontend
+        image: mkortmann/udagram-frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
           requests:
-            memory: "64Mi"
+            memory: "640Mi"
             cpu: "250m"
           limits:
-            memory: "1024Mi"
-            cpu: "400m"
+            memory: "2048Mi"
+            cpu: "500m"
       restartPolicy: Always
-            livenessProbe:
-        httpGet:
-          path: /health/frontend
-          port: 80
-        initialDelaySeconds: 3
-        periodSeconds: 3

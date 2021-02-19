@@ -3,29 +3,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-users
+  name: udagram-api-users
   labels:
-    service: udagram-users
+    service: udagram-api-users
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: udagram-users
+      service: udagram-api-users
   template:
     metadata:
       labels:
-        service: udagram-users
+        service: udagram-api-users
     spec:
       containers:
-      - name: udagram-users
-        image: mkortmann/udagram-users
+      - name: udagram-api-users
+        image: mkortmann/udagram-api-users:latest
         resources:
           requests:
-            memory: "64Mi"
+            memory: "640Mi"
             cpu: "250m"
           limits:
-            memory: "1024Mi"
-            cpu: "400m"
+            memory: "2048Mi"
+            cpu: "500m"
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
@@ -73,9 +73,3 @@ spec:
               name: env-config
               key: JWT_SECRET
       restartPolicy: Always
-      livenessProbe:
-        httpGet:
-          path: /health/users
-          port: 8080
-        initialDelaySeconds: 3
-        periodSeconds: 3

@@ -5,7 +5,7 @@ cd ./udagram-api-feed
 kubectl apply -f udagram-api-feed-deployment.yaml
 kubectl apply -f udagram-api-feed-service.yaml
 
-cd ../udagram-api-frontend
+cd ../udagram-api-users
 kubectl apply -f udagram-api-users-deployment.yaml
 kubectl apply -f udagram-api-users-service.yaml
 
@@ -17,3 +17,6 @@ cd ../udagram-api-reverseproxy
 kubectl apply -f udagram-api-reverseproxy-deployment.yaml
 kubectl apply -f udagram-api-reverseproxy-service.yaml
 
+#then we need to apply the config map
+cd ..
+kubectl apply -f env-configmap.yaml

@@ -50,8 +50,8 @@ services:
       - 8080:8080
     # at same network, so we need to specify only the container names
     depends_on:
-      - udagram-feed
-      - udagram-users
+      - udagram-api-feed
+      - udagram-api-users
 
 
 
