@@ -21,7 +21,7 @@ spec:
         image: mkortmann/udagram-api-users:latest
         resources:
           requests:
-            memory: "640Mi"
+            memory: "1024Mi"
             cpu: "250m"
           limits:
             memory: "2048Mi"
@@ -30,46 +30,46 @@ spec:
         - name: POSTGRES_USERNAME
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: POSTGRES_USERNAME
         - name: POSTGRES_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: POSTGRES_PASSWORD
         - name: POSTGRES_HOST
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: POSTGRES_HOST
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: POSTGRES_DB
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: AWS_BUCKET
         - name: AWS_REGION
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: AWS_REGION
         - name: AWS_PROFILE
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: AWS_PROFILE
-        - name: URL
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: URL
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-variables
               key: JWT_SECRET
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-variables
+              key: URL
       restartPolicy: Always
