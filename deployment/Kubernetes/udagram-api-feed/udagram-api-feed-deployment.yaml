@@ -1,6 +1,6 @@
 
 # It specifies how our pods should be created!
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 # specify is a deployment.yaml file
 kind: Deployment
 metadata:
