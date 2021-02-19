@@ -45,7 +45,7 @@ services:
       - "8100:80"
   # reversy proxy: proxies requests to internal services
   udagram-reverseproxy:
-    image: mkortmann/udagram-reversyproxy
+    image: mkortmann/udagram-reverseproxy
     ports:
       - 8080:8080
     # at same network, so we need to specify only the container names
