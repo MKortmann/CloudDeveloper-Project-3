@@ -62,14 +62,14 @@ spec:
             configMapKeyRef:
               name: env-variables
               key: AWS_PROFILE
-        - name: URL
-          valueFrom:
-            configMapKeyRef:
-              name: env-variables
-              key: URL
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
               name: env-variables
               key: JWT_SECRET
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-variables
+              key: URL
       restartPolicy: Always
