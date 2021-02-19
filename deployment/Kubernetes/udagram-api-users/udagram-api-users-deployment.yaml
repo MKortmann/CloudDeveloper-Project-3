@@ -21,7 +21,7 @@ spec:
         image: mkortmann/udagram-api-users:latest
         resources:
           requests:
-            memory: "640Mi"
+            memory: "1024Mi"
             cpu: "250m"
           limits:
             memory: "2048Mi"
