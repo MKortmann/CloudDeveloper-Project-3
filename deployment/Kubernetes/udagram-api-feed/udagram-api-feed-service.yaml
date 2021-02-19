@@ -3,14 +3,14 @@ apiVersion: v1
 # It is a service!!!
 kind: Service
 metadata:
-  name: udagram-feed
+  name: udagram-api-feed
   labels:
-    service: udagram-feed
+    service: udagram-api-feed
 spec:
   ports:
   - name: "8080"
     port: 8080
     targetPort: 8080
   selector:
-    service: udagram-feed
+    service: udagram-api-feed
 

@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: udagram-users
+  name: udagram-api-users
   labels:
-    service: udagram-users
+    service: udagram-api-users
 spec:
   ports:
   - name: "8080"
     port: 8080
     targetPort: 8080
   selector:
-    service: udagram-users
+    service: udagram-api-users
 
