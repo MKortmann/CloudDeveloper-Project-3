@@ -18,7 +18,8 @@ RUN ionic build
 ## So, here a single DockerFile will be used to generate a new image that includes the necessary content. In this case using an alpine image, then we need the copy command below
 FROM nginx:alpine
 
-#COPY  SOURCE: www DESTINATION: /usr/share/nginx/html
+#COPY  SOURCE: /usr/src/app/www
+#      DESTINATION: /usr/share/nginx/html
 #USING flag from to set the source location to a previous build stage FROM ... AS <name>. That is used instead of a build context sent by the user.
 # so here we copy the "artifacts" that are build in the folder
 # /usr/src/app/www from the previous image ionic to the

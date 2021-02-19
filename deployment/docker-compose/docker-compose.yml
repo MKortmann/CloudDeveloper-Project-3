@@ -4,8 +4,12 @@ version: '3.3'
 
 services:
   # udagram api for feed
+  # container name:
   udagram-api-feed:
+    # image where the container comes from
     image: mkortmann/udagram-api-feed
+    # for data persistence: HOST VOLUMES: so we get our credentials  (: work as separation)
+    # host volume:container volume
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
@@ -36,6 +40,7 @@ services:
   # udagram-ionic frontend
   udagram-frontend:
     image: mkortmann/udagram-frontend
+    # localhost:ContainerPort
     ports:
       - "8100:80"
   # reversy proxy: proxies requests to internal services
@@ -43,6 +48,7 @@ services:
     image: mkortmann/udagram-reversyproxy
     ports:
       - 8080:8080
+    # at same network, so we need to specify only the container names
     depends_on:
       - udagram-feed
       - udagram-users

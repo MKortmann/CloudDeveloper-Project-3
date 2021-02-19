@@ -1,0 +1,84 @@
+
+# It specifies how our pods should be created!
+apiVersion: apps/v1
+# specify is a deployment.yaml file
+kind: Deployment
+metadata:
+  name: udagram-feed
+  labels:
+    service: udagram-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udagram-feed
+  template:
+    metadata:
+      labels:
+        service: udagram-feed
+# tell which docker image to use
+    spec:
+      containers:
+      - name: udagram-feed
+        image: mkortmann/udagram-feed
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        env:
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DB
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_BUCKET
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
+      restartPolicy: Always
+      # to check the health, api consumer can verify if it is health
+      livenessProbe:
+        httpGet:
+          path: /health/feed
+          port: 8080
+        initialDelaySeconds: 3
+        periodSeconds: 3

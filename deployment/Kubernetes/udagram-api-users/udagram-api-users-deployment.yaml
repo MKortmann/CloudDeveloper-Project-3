@@ -1,0 +1,81 @@
+
+# It specifies how our pods should be created!
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-users
+  labels:
+    service: udagram-users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udagram-users
+  template:
+    metadata:
+      labels:
+        service: udagram-users
+    spec:
+      containers:
+      - name: udagram-users
+        image: mkortmann/udagram-users
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        env:
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DB
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_BUCKET
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
+      restartPolicy: Always
+      livenessProbe:
+        httpGet:
+          path: /health/users
+          port: 8080
+        initialDelaySeconds: 3
+        periodSeconds: 3
