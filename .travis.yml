@@ -1,27 +1,36 @@
-language: node_js
-node_js:
-  - 13
+# language: minimal - minimal is image available in Ubuntu Focal dist: focal... It is not tailored to any particular programming language. It is optimized to be faster and use less disk space.
+language: minimal
 
 services:
   - docker
 
-# Install dependencies
+# before install we need to download: docker compose and kubectl
+before_install:
+    # print version of docker and docker compose
+    - docker -v && docker-compose -v
+    # sudo (master permission), create a folder called docker-composse at /usr/local/bin/
+    - sudo rm /usr/local/bin/docker-compose
+    # let's download the docker compose version specified below
+    - curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` > docker-compose
+    # give the permission to execute it
+    - chmod +x docker-compose
+    # move the docker-compose folder to /user/local/bin
+    - sudo mv docker-compose /usr/local/bin
+    # download kubernetes
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    # give the permission to execute it
+    - chmod +x ./kubectl
+    # move kubectl to /user/local/bin/kubectl
+    - sudo mv ./kubectl /usr/local/bin/kubectl
+
+# docker-compose takes a file to be executed highlighted with a flag -f, and will build it in parallel (it build up to 5 images simultaneously). If I added the up, it will also start all later on.
 install:
-
-# Scripts to be run such as tests
-before_script:
-
-script:
-  - cd udagram-api-feed
-  - pwd
-  - printenv
-  - docker build -t udagram-api-feed .
-  - docker run udagram-api-feed
-  # - docker --version # print the version for logging
-  # - docker build -t simple-node .
-  # - docker tag simple-node YOUR_DOCKER_HUB/simple-node:latest
+    - docker-compose -f deployment/docker-compose/docker-compose-build.yml build --parallel
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  # - docker push YOUR_DOCKER_HUB/simple-node
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push mkortmann/udagram-api-feed
+  - docker push mkortmann/udagram-api-users
+  - docker push mkortmann/udagram-frontend
+  - docker push mkortmann/udagram-reverseproxy

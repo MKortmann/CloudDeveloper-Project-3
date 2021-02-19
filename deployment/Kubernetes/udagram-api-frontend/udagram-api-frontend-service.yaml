@@ -1,0 +1,15 @@
+# same as api but we changes port and add load balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name:  udagram-frontend
+  labels:
+    service:  udagram-frontend
+spec:
+  ports:
+  - name: "8100"
+    port: 8100
+    targetPort: 80
+  selector:
+    service: udagram-frontend
+  type: LoadBalancer

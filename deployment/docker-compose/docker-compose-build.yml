@@ -1,0 +1,23 @@
+# here we use docker compose to build all the images together: it creates a common network for these containers!
+version: '3.3'
+services:
+  udagram-feed:
+    build:
+      context: ../../udagram-api-feed
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-api-feed
+  udagram-users:
+    build:
+      context: ../../udagram-api-users
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-api-users
+  udagram-frontend:
+    build:
+      context: ../../udagram-frontend
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-frontend
+  udagram-reverseproxy:
+    build:
+      context: ../../udagram-reverseproxy
+      dockerfile: Dockerfile
+    image: mkortmann/udagram-reverseproxy
