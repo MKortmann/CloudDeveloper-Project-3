@@ -1,5 +1,5 @@
-# Use NodeJS base image, tag: alpine
-FROM node:15-alpine3.10
+# Use NodeJS base image
+FROM node:13
 
 # Create app directory in Docker
 WORKDIR /usr/src/app
